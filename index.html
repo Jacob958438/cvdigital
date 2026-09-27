@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CVDigital — Haz que te recuerden</title>
+  <meta name="description" content="Tu hoja de vida como página web profesional. Link único, código QR y diseño que destaca. Desde $10 USD.">
+  <link rel="icon" type="image/png" href="assets/profile-512.png">
+  <link rel="apple-touch-icon" href="assets/profile-512.png">
+  <meta property="og:title" content="CVDigital — Haz que te recuerden">
+  <meta property="og:description" content="Tu hoja de vida convertida en una página web profesional. Un link, un QR y un diseño que destaca. Desde $10 USD.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/profile.png">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f8f7f4;
+      --dark: #0f0f0f;
+      --dark2: #1a1a1a;
+      --accent: #1a6bff;
+      --accent-dark: #1452cc;
+      --accent-light: rgba(26,107,255,0.08);
+      --green: #00c76a;
+      --text: #555;
+      --text-dark: #1a1a1a;
+      --border: #e8e5de;
+      --white: #ffffff;
+      --card: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========================
+       NAV
+    ======================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(248,247,244,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.55rem 1.3rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* ========================
+       HERO
+    ======================== */
+    .hero {
+      padding: 7rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .hero-left { animation: fadeUp 0.7s ease both; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-light);
+      border: 1px solid rgba(26,107,255,0.2);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-chip::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .hero-h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 2rem;
+      max-width: 440px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #25D366;
+      color: #fff;
+      padding: 0.85rem 1.8rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+    }
+
+    .btn-wa:hover {
+      background: #20bc5a;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dark);
+      padding: 0.85rem 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .trust-item::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .hero-right {
+      animation: fadeUp 0.7s 0.15s ease both;
+      position: relative;
+    }
+
+    /* PREVIEW CARD */
+    .preview-card {
+      background: var(--dark2);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .preview-bar {
+      background: #111;
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid #222;
+    }
+
+    .pbar-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+
+    .pbar-url {
+      flex: 1;
+      background: #1a1a1a;
+      border-radius: 4px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.65rem;
+      color: #666;
+      margin: 0 0.5rem;
+    }
+
+    .preview-content {
+      padding: 1.5rem;
+    }
+
+    .pc-sidebar {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .pc-left {
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .pc-avatar {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #00c76a);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .pc-line { height: 5px; background: #2a2a2a; border-radius: 3px; margin-bottom: 5px; }
+    .pc-line.blue { background: var(--accent); width: 60%; }
+    .pc-line.s { width: 70%; }
+    .pc-line.xs { width: 50%; }
+
+    .pc-right { flex: 1; }
+
+    .pc-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .pc-role {
+      font-size: 0.62rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .pc-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .pc-bar-row { display: flex; align-items: center; gap: 6px; }
+    .pc-bar-label { font-size: 0.55rem; color: #555; width: 55px; }
+    .pc-bar-track { flex: 1; height: 3px; background: #222; border-radius: 2px; }
+    .pc-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+
+    .preview-badge {
+      position: absolute;
+      top: -10px; right: -10px;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,199,106,0.4);
+    }
+
+    .preview-qr {
+      position: absolute;
+      bottom: -15px; left: -15px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.6rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .qr-mini {
+      width: 48px; height: 48px;
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      gap: 2px;
+    }
+
+    .qm { background: #ddd; border-radius: 1px; }
+    .qm.on { background: var(--dark); }
+
+    .preview-link {
+      position: absolute;
+      bottom: -15px; right: 20px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.5rem 0.8rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      font-size: 0.62rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ========================
+       STATS BAR
+    ======================== */
+    .stats-bar {
+      background: var(--dark);
+      padding: 1.2rem 2rem;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-num span { color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.68rem;
+      color: #666;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-div {
+      width: 1px;
+      height: 30px;
+      background: #2a2a2a;
+    }
+
+    /* ========================
+       PROBLEMA
+    ======================== */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-chip {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-h2 em { font-style: italic; color: var(--accent); }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .problema-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .problema-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contrast-block {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .cb-header {
+      padding: 0.7rem 1.2rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cb-header.bad { background: #fef2f2; color: #e53e3e; border-bottom: 1px solid #fecaca; }
+    .cb-header.good { background: #f0fdf4; color: #16a34a; border-bottom: 1px solid #bbf7d0; }
+
+    .cb-body {
+      padding: 1rem 1.2rem;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      background: var(--white);
+      color: var(--text);
+    }
+
+    /* ========================
+       BENEFICIOS
+    ======================== */
+    .beneficios-wrap {
+      background: var(--dark);
+      padding: 5rem 2rem;
+    }
+
+    .beneficios-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .beneficios-inner .section-h2 { color: #fff; }
+    .beneficios-inner .section-sub { color: #888; }
+
+    .ben-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #222;
+      margin-top: 3rem;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .ben-item {
+      background: var(--dark2);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+
+    .ben-item:hover { background: #1f1f1f; }
+
+    .ben-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(26,107,255,0.2);
+    }
+
+    .ben-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .ben-desc {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.65;
+    }
+
+    /* ========================
+       PLANTILLAS
+    ======================== */
+    .plantillas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    /* Mock plantilla software */
+    .pcard-preview.p4 { background: linear-gradient(135deg, #050a05, #0a140a); }
+    .mock4 { background: #050a05; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    .mock4-nav { height: 14px; background: #0d120d; border-bottom: 1px solid #1a261a; display: flex; align-items: center; padding: 0 5px; gap: 3px; }
+    .mock4-dot { width: 4px; height: 4px; border-radius: 50%; }
+    .mock4-path { height: 3px; width: 35%; background: #1a261a; border-radius: 1px; margin-left: 4px; }
+    .mock4-hero { padding: 5px 6px; border-bottom: 1px solid #1a261a; }
+    .mock4-name { height: 9px; background: #39ff6e; border-radius: 1px; width: 55%; margin-bottom: 2px; opacity: 0.9; }
+    .mock4-sub { height: 3px; background: #1a4a28; border-radius: 1px; width: 70%; }
+    .mock4-body { display: grid; grid-template-columns: 2fr 1fr; gap: 1px; background: #1a261a; }
+    .mock4-panel { background: #050a05; padding: 4px 5px; }
+    .mock4-gl { height: 2px; background: #1a261a; border-radius: 1px; margin-bottom: 3px; }
+    .mock4-gl.g { background: #39ff6e; width: 30%; }
+    .mock4-gl.b { background: #4499ff; width: 45%; }
+
+    /* =============================================
+       ENLACES A PLANTILLAS
+       Todas viven en /templates dentro de esta misma web.
+       Primer Empleo:  templates/primer-empleo.html
+       Moderna:        templates/moderna.html
+       Corporativa:    templates/corporativa.html
+       Minimalista:    templates/minimalista.html
+       Tech:           templates/tech.html
+    ============================================= */
+
+    .pcard {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      display: block;
+      transition: all 0.25s;
+    }
+
+    .pcard:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.1);
+      border-color: var(--accent);
+    }
+
+    .pcard-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pcard-preview.p1 { background: linear-gradient(135deg, #fff8f5, #fff0ea); }
+    .pcard-preview.p2 { background: linear-gradient(135deg, #0e0e0e, #1a1a1a); }
+    .pcard-preview.p3 { background: linear-gradient(135deg, #080808, #101010); }
+
+    /* mocks simplificados */
+    .mock { width: 75%; height: 75%; position: relative; border-radius: 6px; overflow: hidden; }
+
+    .mock1 { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: grid; grid-template-columns: 30% 1fr; }
+    .mock1-sb { background: #1a1a1a; padding: 8px; }
+    .mock1-sb-avatar { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg,#ff5c3a,#ffe144); margin-bottom: 6px; }
+    .mock1-sb-line { height: 3px; background: #333; border-radius: 2px; margin-bottom: 3px; }
+    .mock1-sb-line.a { background: #ff5c3a; width: 60%; }
+    .mock1-main { padding: 8px; }
+    .mock1-strip { height: 22%; background: #ff5c3a; border-radius: 3px; margin-bottom: 5px; }
+    .mock1-ml { height: 3px; background: #eee; border-radius: 2px; margin-bottom: 3px; }
+    .mock1-ml.s { width: 65%; }
+
+    .mock2 { background: #0e0e0e; box-shadow: 0 4px 20px rgba(0,0,0,0.3); padding: 8px; }
+    .mock2-top { border-bottom: 1px solid #222; padding-bottom: 6px; margin-bottom: 6px; display: flex; gap: 6px; align-items: center; }
+    .mock2-circle { width: 18px; height: 18px; border-radius: 50%; border: 1px solid #b8975a; flex-shrink: 0; }
+    .mock2-tl { flex: 1; }
+    .mock2-tl div { height: 3px; background: #222; border-radius: 2px; margin-bottom: 3px; }
+    .mock2-tl div.g { background: #b8975a; width: 50%; }
+    .mock2-body { display: grid; grid-template-columns: 2fr 1fr; gap: 5px; }
+    .mock2-col div { height: 3px; background: #1e1e1e; border-radius: 2px; margin-bottom: 4px; }
+    .mock2-col div.g { background: #b8975a; width: 40%; }
+
+    .mock3 { background: #0a0a0a; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+    .mock3-nav { height: 14px; background: #111; border-bottom: 1px solid #1e1e1e; display: flex; align-items: center; padding: 0 5px; gap: 3px; }
+    .mock3-dot { width: 4px; height: 4px; border-radius: 50%; }
+    .mock3-nb { height: 2px; width: 20%; background: #00e5a0; border-radius: 1px; margin-left: 4px; }
+    .mock3-hero { padding: 6px; }
+    .mock3-hl { height: 7px; background: #eee; border-radius: 2px; margin-bottom: 3px; width: 60%; }
+    .mock3-hl.g { background: #00e5a0; width: 40%; }
+    .mock3-bd { display: grid; grid-template-columns: 2fr 1fr; gap: 1px; background: #1e1e1e; }
+    .mock3-p { background: #0a0a0a; padding: 4px; }
+    .mock3-pl { height: 2px; background: #1e1e1e; border-radius: 1px; margin-bottom: 3px; }
+    .mock3-pl.g { background: #00e5a0; width: 30%; }
+
+    /* Mock Primer Empleo */
+    .pcard-preview.p5 { background: linear-gradient(135deg, #eef3ff, #e7fbf2); }
+    .mock5 { background: #fff; border-radius: 8px; width: 76%; height: 78%; padding: 9px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 4px 20px rgba(26,107,255,0.14); }
+    .mock5-top { display: flex; align-items: center; gap: 6px; }
+    .mock5-av { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #1a6bff, #00c76a); flex-shrink: 0; }
+    .mock5-lines { flex: 1; }
+    .mock5-lines div { height: 3px; background: #e8ebf2; border-radius: 2px; margin-bottom: 4px; }
+    .mock5-lines div:last-child { margin-bottom: 0; width: 70%; }
+    .mock5-lines div.b { background: #1a6bff; width: 58%; }
+    .mock5-chips { display: flex; gap: 4px; }
+    .mock5-chip { flex: 1; height: 9px; border-radius: 5px; background: #eef3ff; border: 1px solid #dbe5ff; }
+    .mock5-chip.g { background: #e7fbf2; border-color: #c8f3e0; }
+    .mock5-bars { display: flex; flex-direction: column; gap: 6px; margin-top: 1px; }
+    .mock5-bar { height: 5px; background: #eef1f7; border-radius: 3px; overflow: hidden; }
+    .mock5-bar span { display: block; height: 100%; background: linear-gradient(90deg,#1a6bff,#00c76a); border-radius: 3px; }
+
+    .pcard-tag {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(4px);
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--dark);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .pcard-body {
+      padding: 1.2rem 1.4rem;
+    }
+
+    .pcard-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .pcard-for {
+      font-size: 0.75rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .pcard-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      transition: gap 0.2s;
+    }
+
+    .pcard:hover .pcard-cta { gap: 0.7rem; }
+
+    /* ========================
+       PROCESO
+    ======================== */
+    .proceso-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .proceso-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(16.66% + 1rem);
+      right: calc(16.66% + 1rem);
+      height: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .paso {
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .paso-num {
+      width: 56px; height: 56px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 8px 20px rgba(26,107,255,0.3);
+    }
+
+    .paso-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .paso-desc {
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ========================
+       PRUEBA SOCIAL
+    ======================== */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .tcard {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .tcard-stars {
+      color: #f5a623;
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: 2px;
+    }
+
+    .tcard-text {
+      font-size: 0.83rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .tcard-author {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .tcard-avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .tcard-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .tcard-job {
+      font-size: 0.7rem;
+      color: var(--text);
+    }
+
+    /* ========================
+       PRECIOS
+    ======================== */
+    .precios-wrap {
+      background: var(--dark);
+      padding: 5rem 2rem;
+    }
+
+    .precios-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .precios-inner .section-h2 { color: #fff; text-align: center; }
+    .precios-inner .section-chip { display: block; text-align: center; }
+
+    .precios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #222;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+
+    .precio-card {
+      background: var(--dark2);
+      padding: 2rem 1.5rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .precio-card:hover { background: #1f1f1f; }
+
+    .precio-card.featured {
+      background: var(--accent);
+    }
+
+    .precio-card.featured:hover { background: var(--accent-dark); }
+
+    .precio-badge {
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--green);
+      color: #fff;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.8rem;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .precio-tipo {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 0.8rem;
+    }
+
+    .precio-card.featured .precio-tipo { color: rgba(255,255,255,0.7); }
+
+    .precio-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3rem;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .precio-num sup { font-size: 1.2rem; vertical-align: super; }
+
+    .precio-periodo {
+      font-size: 0.7rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .precio-card.featured .precio-periodo { color: rgba(255,255,255,0.6); }
+
+    .precio-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .precio-features li {
+      font-size: 0.78rem;
+      color: #888;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid #222;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .precio-card.featured .precio-features li {
+      color: rgba(255,255,255,0.85);
+      border-bottom-color: rgba(255,255,255,0.15);
+    }
+
+    .precio-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.72rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .precio-card.featured .precio-features li::before { color: #fff; }
+
+    .btn-precio {
+      display: block;
+      text-align: center;
+      padding: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s;
+      border: 1.5px solid #333;
+      color: #fff;
+    }
+
+    .btn-precio:hover { border-color: var(--accent); color: var(--accent); }
+
+    .precio-card.featured .btn-precio {
+      background: #fff;
+      color: var(--accent);
+      border-color: transparent;
+    }
+
+    .precio-card.featured .btn-precio:hover { background: rgba(255,255,255,0.9); }
+
+    /* ========================
+       CTA FINAL
+    ======================== */
+    .cta-final {
+      padding: 6rem 2rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-final .section-h2 { margin-bottom: 1rem; }
+
+    .cta-final p {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-wa-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #25D366;
+      color: #fff;
+      padding: 1rem 2rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+    }
+
+    .btn-wa-big:hover {
+      background: #20bc5a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(37,211,102,0.45);
+    }
+
+    .btn-ig-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366);
+      color: #fff;
+      padding: 1rem 2rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-ig-big:hover { transform: translateY(-2px); opacity: 0.92; }
+
+    /* ========================
+       FOOTER
+    ======================== */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid #1a1a1a;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .footer-brand span { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #fff; }
+
+    .footer-copy {
+      font-size: 0.68rem;
+      color: #444;
+    }
+
+    /* ========================
+       FLOATING WA BUTTON
+    ======================== */
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.5);
+      text-decoration: none;
+      transition: all 0.2s;
+      animation: fadeUp 1s 0.5s ease both;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.6);
+    }
+
+    /* ========================
+       RESPONSIVE
+    ======================== */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 5rem 1.5rem 3rem; gap: 2.5rem; }
+      .hero-right { order: -1; }
+      .problema-grid { grid-template-columns: 1fr; }
+      .ben-grid { grid-template-columns: 1fr; }
+      .plantillas-grid { grid-template-columns: 1fr 1fr; }
+      .proceso-steps { grid-template-columns: 1fr; gap: 2rem; }
+      .proceso-steps::before { display: none; }
+      .social-grid { grid-template-columns: 1fr; }
+      .precios-grid { grid-template-columns: 1fr; }
+      .section { padding: 3.5rem 1.5rem; }
+      .beneficios-wrap, .precios-wrap { padding: 3.5rem 1.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; text-align: center; }
+      .stats-inner { gap: 0.5rem; }
+      .stat-div { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">CV<span>Digital</span></a>
+    <!-- CAMBIAR href POR TU LINK DE WHATSAPP -->
+    <a href="https://wa.me/573114008507?text=Hola%2C%20me%20interesa%20digitalizar%20mi%20hoja%20de%20vida.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" class="nav-cta" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Pedir el mío
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section style="background:var(--bg); border-bottom: 1px solid var(--border);">
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-chip">Disponible ahora · Entrega en 48h</div>
+        <h1 class="hero-h1">
+          Haz que te<br>
+          <em>recuerden</em><br>
+          desde el primer vistazo.
+        </h1>
+        <p class="hero-sub">
+          Tu hoja de vida convertida en una página web profesional. Un link, un QR y un diseño que dice más en segundos que un PDF en minutos.
+        </p>
+        <div class="hero-actions">
+          <!-- WHATSAPP CTA PRINCIPAL -->
+          <a href="https://wa.me/573114008507?text=Hola%2C%20me%20interesa%20digitalizar%20mi%20hoja%20de%20vida.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-wa" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir el mío por WhatsApp
+          </a>
+          <a href="#plantillas" class="btn-ghost">Ver plantillas →</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item">Desde $10 USD</div>
+          <div class="trust-item">Entrega en 48h</div>
+          <div class="trust-item">Personalizado</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="preview-card">
+          <div class="preview-bar">
+            <div class="pbar-dot" style="background:#ff5f57"></div>
+            <div class="pbar-dot" style="background:#ffbd2e"></div>
+            <div class="pbar-dot" style="background:#28c840"></div>
+            <div class="pbar-url">jacob958438.github.io/cvdigital/tu-nombre</div>
+          </div>
+          <div class="preview-content">
+            <div class="pc-sidebar">
+              <div class="pc-left">
+                <div class="pc-avatar">JG</div>
+                <div class="pc-line blue"></div>
+                <div class="pc-line s"></div>
+                <div class="pc-line xs"></div>
+              </div>
+              <div class="pc-right">
+                <div class="pc-name">Juan García</div>
+                <div class="pc-role">Profesional · 2026</div>
+                <div class="pc-bars">
+                  <div class="pc-bar-row">
+                    <span class="pc-bar-label">Diseño</span>
+                    <div class="pc-bar-track"><div class="pc-bar-fill" style="width:88%"></div></div>
+                  </div>
+                  <div class="pc-bar-row">
+                    <span class="pc-bar-label">Gestión</span>
+                    <div class="pc-bar-track"><div class="pc-bar-fill" style="width:75%"></div></div>
+                  </div>
+                  <div class="pc-bar-row">
+                    <span class="pc-bar-label">Liderazgo</span>
+                    <div class="pc-bar-track"><div class="pc-bar-fill" style="width:82%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-badge">✓ En línea</div>
+        </div>
+        <div class="preview-qr">
+          <div class="qr-mini">
+            <div class="qm on"></div><div class="qm on"></div><div class="qm"></div><div class="qm on"></div><div class="qm on"></div>
+            <div class="qm on"></div><div class="qm"></div><div class="qm on"></div><div class="qm"></div><div class="qm on"></div>
+            <div class="qm"></div><div class="qm on"></div><div class="qm"></div><div class="qm on"></div><div class="qm"></div>
+            <div class="qm on"></div><div class="qm"></div><div class="qm on"></div><div class="qm on"></div><div class="qm"></div>
+            <div class="qm on"></div><div class="qm on"></div><div class="qm"></div><div class="qm"></div><div class="qm on"></div>
+          </div>
+        </div>
+        <div class="preview-link">🔗 Tu link único</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">48<span>h</span></div>
+        <div class="stat-label">Tiempo de entrega</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Diseños disponibles</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat-item">
+        <div class="stat-num"><span>$</span>10</div>
+        <div class="stat-label">Desde USD</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat-item">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Personalizado</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEMA -->
+  <div style="border-bottom:1px solid var(--border);">
+    <div class="section problema-grid">
+      <div>
+        <div class="section-chip">El problema</div>
+        <h2 class="section-h2">Tu CV se pierde<br>entre <em>cientos iguales.</em></h2>
+        <p class="section-sub">
+          Un reclutador revisa un CV en menos de 7 segundos. Si no destacas en esos 7 segundos, no existe. El PDF que enviaste ya está en la papelera.
+          <br><br>
+          No se trata de ser el mejor candidato. Se trata de ser el más memorable.
+        </p>
+      </div>
+      <div class="problema-right">
+        <div class="contrast-block">
+          <div class="cb-header bad">✗ &nbsp;Hoja de vida en PDF o Word</div>
+          <div class="cb-body">Se imprime, se arruga, se pierde. Igual a las otras 50 que el reclutador revisó ese día. Nadie sabe si la leyeron.</div>
+        </div>
+        <div class="contrast-block">
+          <div class="cb-header good">✓ &nbsp;CV Digital CVDigital</div>
+          <div class="cb-body">Un link que se abre en 2 segundos desde el celular. Diseño que impresiona antes de leer una sola línea. Se recuerda, se comparte, se destaca.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFICIOS -->
+  <div class="beneficios-wrap">
+    <div class="beneficios-inner">
+      <div class="section-chip">Por qué funciona</div>
+      <h2 class="section-h2">Todo lo que necesitas<br>para <em>destacar.</em></h2>
+      <div class="ben-grid">
+        <div class="ben-item">
+          <div class="ben-icon">🔗</div>
+          <div class="ben-title">Link único para compartir</div>
+          <div class="ben-desc">Lo envías por WhatsApp, lo pones en LinkedIn, lo escribes en un correo. Siempre disponible, siempre impecable.</div>
+        </div>
+        <div class="ben-item">
+          <div class="ben-icon">📱</div>
+          <div class="ben-title">Perfecto en cualquier pantalla</div>
+          <div class="ben-desc">Se ve igual de bien en el celular del reclutador que en una pantalla grande. Sin errores, sin desconfiguración.</div>
+        </div>
+        <div class="ben-item">
+          <div class="ben-icon">⬛</div>
+          <div class="ben-title">Código QR incluido</div>
+          <div class="ben-desc">Imprímelo en tu tarjeta de presentación o muéstralo desde el celular en la entrevista. Tecnología que impresiona.</div>
+        </div>
+        <div class="ben-item">
+          <div class="ben-icon">🎨</div>
+          <div class="ben-title">Diseño personalizado</div>
+          <div class="ben-desc">No es una plantilla genérica. Ajustamos colores, secciones y detalles a tu perfil y a la industria a la que aplicas.</div>
+        </div>
+        <div class="ben-item">
+          <div class="ben-icon">⚡</div>
+          <div class="ben-title">Entrega en 48 horas</div>
+          <div class="ben-desc">Nos mandas tu información hoy y en menos de dos días tienes tu CV digital listo para usar.</div>
+        </div>
+        <div class="ben-item">
+          <div class="ben-icon">💼</div>
+          <div class="ben-title">Imagen profesional real</div>
+          <div class="ben-desc">El tipo de presentación que usan profesionales en empresas grandes. Ahora al alcance de cualquiera.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANTILLAS -->
+  <div style="border-bottom:1px solid var(--border);">
+    <div class="section" id="plantillas">
+      <div class="section-chip">Catálogo</div>
+      <h2 class="section-h2">Elige el diseño que<br>mejor te <em>representa.</em></h2>
+      <div class="plantillas-grid">
+
+        <!-- =============================================
+             PLANTILLA PRIMER EMPLEO (prioridad #1)
+             templates/primer-empleo.html
+        ============================================= -->
+        <a href="templates/primer-empleo.html" class="pcard" target="_blank">
+          <div class="pcard-preview p5">
+            <div class="mock mock5">
+              <div class="mock5-top">
+                <div class="mock5-av"></div>
+                <div class="mock5-lines">
+                  <div class="b"></div>
+                  <div></div>
+                </div>
+              </div>
+              <div class="mock5-chips">
+                <div class="mock5-chip"></div><div class="mock5-chip g"></div><div class="mock5-chip"></div>
+              </div>
+              <div class="mock5-bars">
+                <div class="mock5-bar"><span style="width:88%"></span></div>
+                <div class="mock5-bar"><span style="width:72%"></span></div>
+                <div class="mock5-bar"><span style="width:60%"></span></div>
+              </div>
+            </div>
+            <div class="pcard-tag" style="background:rgba(26,107,255,0.12);color:#1a6bff;">Recomendada</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Primer Empleo</div>
+            <div class="pcard-for">Para estudiantes, practicantes y recién graduados. Destaca tus habilidades, proyectos, estudios e idiomas.</div>
+            <div class="pcard-cta">Ver diseño →</div>
+          </div>
+        </a>
+
+        <!-- =============================================
+             PLANTILLA MODERNA
+             templates/moderna.html
+        ============================================= -->
+        <a href="templates/moderna.html" class="pcard" target="_blank">
+          <div class="pcard-preview p1">
+            <div class="mock mock1">
+              <div class="mock1-sb">
+                <div class="mock1-sb-avatar"></div>
+                <div class="mock1-sb-line a"></div>
+                <div class="mock1-sb-line"></div>
+                <div class="mock1-sb-line"></div>
+              </div>
+              <div class="mock1-main">
+                <div class="mock1-strip"></div>
+                <div class="mock1-ml"></div>
+                <div class="mock1-ml s"></div>
+                <div class="mock1-ml"></div>
+              </div>
+            </div>
+            <div class="pcard-tag">Fresca</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Moderna y Colorida</div>
+            <div class="pcard-for">Ideal para jóvenes profesionales, creativos y perfiles que quieren destacar con energía.</div>
+            <div class="pcard-cta">Ver diseño →</div>
+          </div>
+        </a>
+
+        <!-- =============================================
+             PLANTILLA CORPORATIVA
+             templates/corporativa.html
+        ============================================= -->
+        <a href="templates/corporativa.html" class="pcard" target="_blank">
+          <div class="pcard-preview p2">
+            <div class="mock mock2">
+              <div class="mock2-top">
+                <div class="mock2-circle"></div>
+                <div class="mock2-tl">
+                  <div></div>
+                  <div class="g"></div>
+                </div>
+              </div>
+              <div class="mock2-body">
+                <div class="mock2-col">
+                  <div class="g"></div><div></div><div></div><div></div>
+                </div>
+                <div class="mock2-col">
+                  <div class="g"></div><div></div><div></div>
+                </div>
+              </div>
+            </div>
+            <div class="pcard-tag" style="background:rgba(0,0,0,0.7);color:#b8975a;">Elegante</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Elegancia Corporativa</div>
+            <div class="pcard-for">Para ejecutivos, gerentes y profesionales que necesitan transmitir autoridad y trayectoria.</div>
+            <div class="pcard-cta">Ver diseño →</div>
+          </div>
+        </a>
+
+        <!-- =============================================
+             PLANTILLA MINIMALISTA
+             templates/minimalista.html
+        ============================================= -->
+        <a href="templates/minimalista.html" class="pcard" target="_blank">
+          <div class="pcard-preview p3">
+            <div class="mock mock3">
+              <div class="mock3-nav">
+                <div class="mock3-dot" style="background:#ff4455"></div>
+                <div class="mock3-dot" style="background:#ffcc44"></div>
+                <div class="mock3-dot" style="background:#00e5a0"></div>
+                <div class="mock3-nb"></div>
+              </div>
+              <div class="mock3-hero">
+                <div class="mock3-hl"></div>
+                <div class="mock3-hl g"></div>
+              </div>
+              <div class="mock3-bd">
+                <div class="mock3-p">
+                  <div class="mock3-pl g"></div>
+                  <div class="mock3-pl"></div><div class="mock3-pl"></div>
+                </div>
+                <div class="mock3-p">
+                  <div class="mock3-pl g"></div>
+                  <div class="mock3-pl"></div>
+                </div>
+              </div>
+            </div>
+            <div class="pcard-tag" style="background:rgba(0,0,0,0.7);color:#00e5a0;">Premium</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Oscura y Minimalista</div>
+            <div class="pcard-for">Diseño oscuro sofisticado, apto para cualquier industria que quiera proyectar modernidad.</div>
+            <div class="pcard-cta">Ver diseño →</div>
+          </div>
+        </a>
+
+        <!-- =============================================
+             PLANTILLA TECH
+             templates/tech.html
+        ============================================= -->
+        <a href="templates/tech.html" class="pcard" target="_blank">
+          <div class="pcard-preview p4">
+            <div class="mock mock4">
+              <div class="mock4-nav">
+                <div class="mock4-dot" style="background:#ff4455"></div>
+                <div class="mock4-dot" style="background:#ffcc44"></div>
+                <div class="mock4-dot" style="background:#39ff6e"></div>
+                <div class="mock4-path"><span></span></div>
+              </div>
+              <div class="mock4-hero">
+                <div class="mock4-name"></div>
+                <div class="mock4-sub"></div>
+              </div>
+              <div class="mock4-body">
+                <div class="mock4-panel">
+                  <div class="mock4-gl g"></div>
+                  <div class="mock4-gl"></div>
+                  <div class="mock4-gl b"></div>
+                  <div class="mock4-gl"></div>
+                </div>
+                <div class="mock4-panel">
+                  <div class="mock4-gl g"></div>
+                  <div class="mock4-gl"></div>
+                  <div class="mock4-gl"></div>
+                </div>
+              </div>
+            </div>
+            <div class="pcard-tag" style="background:rgba(0,0,0,0.8);color:#39ff6e;">Software</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Dev &amp; Tech</div>
+            <div class="pcard-for">Para desarrolladores, ingenieros y perfiles tech que quieren un CV a la altura de su stack.</div>
+            <div class="pcard-cta">Ver diseño →</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESO -->
+  <div style="border-bottom:1px solid var(--border); background: var(--white);">
+    <div class="section">
+      <div style="text-align:center; margin-bottom:0;">
+        <div class="section-chip">El proceso</div>
+        <h2 class="section-h2" style="margin:0 auto;">Así de <em>simple.</em></h2>
+      </div>
+      <div class="proceso-steps">
+        <div class="paso">
+          <div class="paso-num">1</div>
+          <div class="paso-title">Escríbenos</div>
+          <div class="paso-desc">Contáctanos por WhatsApp o Instagram. Te respondemos en minutos y te explicamos todo.</div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">2</div>
+          <div class="paso-title">Envíanos tu info</div>
+          <div class="paso-desc">Nos mandas tu experiencia, estudios, habilidades y foto. Sin formatos raros, directo al chat.</div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">3</div>
+          <div class="paso-title">Recibe tu CV listo</div>
+          <div class="paso-desc">En menos de 48 horas recibes tu link y QR. Listo para compartir en tu próxima entrevista.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRECIOS -->
+  <div class="precios-wrap">
+    <div class="precios-inner">
+      <div class="section-chip">Inversión</div>
+      <h2 class="section-h2">Simple, justo, <em>sin sorpresas.</em></h2>
+      <div class="precios-grid">
+
+        <div class="precio-card">
+          <div class="precio-tipo">Básico</div>
+          <div class="precio-num"><sup>$</sup>10</div>
+          <div class="precio-periodo">USD · pago único</div>
+          <ul class="precio-features">
+            <li>Una plantilla a elegir</li>
+            <li>Tus datos y contenido</li>
+            <li>Link publicado en línea</li>
+            <li>Código QR incluido</li>
+            <li>Entrega por WhatsApp</li>
+            <li>Modificaciones posteriores: $1.50 c/u</li>
+          </ul>
+          <a href="https://wa.me/573114008507?text=Hola%2C%20me%20interesa%20el%20plan%20B%C3%A1sico%20de%20CVDigital." class="btn-precio" target="_blank">Solicitar</a>
+        </div>
+
+        <div class="precio-card featured">
+          <div class="precio-badge">Más popular</div>
+          <div class="precio-tipo">Personalizado</div>
+          <div class="precio-num"><sup>$</sup>15</div>
+          <div class="precio-periodo">USD · pago único</div>
+          <ul class="precio-features">
+            <li>Todo lo del plan básico</li>
+            <li>Ajuste de colores a tu gusto</li>
+            <li>Secciones personalizadas</li>
+            <li>Entrega en 48 horas</li>
+            <li>Modificaciones posteriores: $1.50 c/u</li>
+          </ul>
+          <a href="https://wa.me/573114008507?text=Hola%2C%20me%20interesa%20el%20plan%20Personalizado%20de%20CVDigital." class="btn-precio" target="_blank">Solicitar</a>
+        </div>
+
+        <div class="precio-card">
+          <div class="precio-tipo">Plan Anual</div>
+          <div class="precio-num"><sup>$</sup>22<span style="font-size:1.5rem">.50</span></div>
+          <div class="precio-periodo">USD · por año</div>
+          <ul class="precio-features">
+            <li>Todo lo del plan personalizado</li>
+            <li>15 modificaciones sin costo en el año</li>
+            <li>Prioridad en tiempos de entrega</li>
+            <li>Renovación anual al mismo precio</li>
+            <li>Ideal si tu perfil cambia con frecuencia</li>
+          </ul>
+          <a href="https://wa.me/573114008507?text=Hola%2C%20me%20interesa%20el%20Plan%20Anual%20de%20CVDigital." class="btn-precio" target="_blank">Solicitar</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div style="border-bottom:1px solid var(--border);">
+    <div class="cta-final">
+      <div class="section-chip" style="display:block; text-align:center;">Empieza hoy</div>
+      <h2 class="section-h2" style="text-align:center;">La próxima oportunidad<br>puede ser <em>la tuya.</em></h2>
+      <p>No dejes que un PDF te cueste el trabajo que mereces. Escríbenos hoy y en menos de 48 horas tienes tu CV digital listo.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/573114008507?text=Hola%2C%20me%20interesa%20digitalizar%20mi%20hoja%20de%20vida.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-wa-big" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <a href="https://instagram.com/jacobmarinc" class="btn-ig-big" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Seguir en Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">CV<span>Digital</span></div>
+    <div class="footer-links">
+      <a href="#plantillas">Plantillas</a>
+      <a href="https://wa.me/573114008507" target="_blank">WhatsApp</a>
+      <a href="https://instagram.com/jacobmarinc" target="_blank">Instagram</a>
+    </div>
+    <div class="footer-copy">© 2026 CVDigital · Medellín, Colombia</div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a href="https://wa.me/573114008507?text=Hola%2C%20me%20interesa%20digitalizar%20mi%20hoja%20de%20vida.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" class="wa-float" target="_blank" title="Escríbenos por WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    // Scroll reveal suave
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.ben-item, .pcard, .tcard, .paso, .contrast-block').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

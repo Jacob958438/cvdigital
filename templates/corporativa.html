@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrés Caballero — Perfil Profesional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --border: #242424;
+      --gold: #b8975a;
+      --gold-light: #d4b07a;
+      --cream: #f0ead8;
+      --muted: #666;
+      --text: #c8c0b0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* LÍNEA DORADA TOP */
+    .gold-bar {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      width: 100%;
+    }
+
+    /* HEADER */
+    header {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: end;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-left {}
+
+    .header-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .header-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .header-name span {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .header-title {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .header-right {
+      text-align: right;
+      padding-bottom: 0.5rem;
+    }
+
+    .avatar-corp {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2a2218, #1a1a1a);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      margin-left: auto;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .avatar-corp::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .contact-list li {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .contact-list li a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-list li a:hover { color: var(--gold); }
+
+    /* MAIN LAYOUT */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 0;
+    }
+
+    /* COLUMNA IZQUIERDA */
+    .col-left {
+      padding: 4rem 4rem 4rem 0;
+      border-right: 1px solid var(--border);
+    }
+
+    /* COLUMNA DERECHA */
+    .col-right {
+      padding: 4rem 0 4rem 3rem;
+    }
+
+    /* SECCIÓN */
+    .section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* RESUMEN */
+    .resumen p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--cream);
+    }
+
+    /* EXPERIENCIA */
+    .exp-item {
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.3rem;
+      gap: 1rem;
+    }
+
+    .exp-cargo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+
+    .exp-periodo {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-empresa {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .exp-desc {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: #888;
+    }
+
+    .exp-logros {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .logro {
+      font-size: 0.8rem;
+      color: #777;
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .logro::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* HABILIDADES DERECHA */
+    .skill-group {
+      margin-bottom: 2rem;
+    }
+
+    .skill-group-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.7rem;
+      margin: 0.2rem 0.2rem 0.2rem 0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* EDUCACIÓN DERECHA */
+    .edu-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edu-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .edu-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+
+    .edu-inst {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-year {
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    /* IDIOMAS */
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lang-row:last-child { border-bottom: none; }
+
+    .lang-name {
+      font-size: 0.8rem;
+      color: var(--text);
+    }
+
+    .lang-nivel {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* NÚMEROS DESTACADOS */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+      margin-bottom: 3.5rem;
+    }
+
+    .stat-cell {
+      padding: 1.5rem 1.2rem;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat-cell:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-desc {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .footer-gold {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 3rem 1.5rem 2.5rem;
+      }
+      .header-right { text-align: left; }
+      .avatar-corp { margin-left: 0; }
+      .main {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+      }
+      .col-left {
+        padding: 3rem 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .col-right { padding: 3rem 0; }
+      .stats-row { grid-template-columns: 1fr; }
+      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gold-bar"></div>
+
+  <header>
+    <div class="header-left">
+      <div class="header-eyebrow">Perfil Profesional · 2026</div>
+      <h1 class="header-name">Andrés<br><span>Caballero</span></h1>
+      <div class="header-title">Director Comercial &nbsp;·&nbsp; Estrategia &amp; Negocios</div>
+    </div>
+    <div class="header-right">
+      <div class="avatar-corp">AC</div>
+      <ul class="contact-list">
+        <li><a href="mailto:acaballero@email.com">acaballero@email.com</a></li>
+        <li><a href="tel:+573002345678">+57 300 234 5678</a></li>
+        <li>Bogotá, Colombia</li>
+        <li><a href="#">linkedin.com/in/acaballero</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="main">
+
+    <!-- COLUMNA IZQUIERDA -->
+    <div class="col-left">
+
+      <!-- RESUMEN -->
+      <div class="section resumen">
+        <div class="section-label">Perfil</div>
+        <p>Profesional con más de doce años liderando equipos comerciales de alto rendimiento en sectores financiero e industrial. Orientado a resultados, con capacidad para traducir visión estratégica en ejecución concreta y medible.</p>
+      </div>
+
+      <!-- ESTADÍSTICAS -->
+      <div class="stats-row">
+        <div class="stat-cell">
+          <div class="stat-num">12+</div>
+          <div class="stat-desc">Años de experiencia</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">$4M</div>
+          <div class="stat-desc">En ventas gestionadas</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">3</div>
+          <div class="stat-desc">Países operados</div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCIA -->
+      <div class="section">
+        <div class="section-label">Experiencia</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div class="exp-cargo">Director Comercial</div>
+            <div class="exp-periodo">2022 — 2026</div>
+          </div>
+          <div class="exp-empresa">Grupo Inversiones Andes · Bogotá</div>
+          <div class="exp-desc">Liderazgo de equipo comercial de 28 personas en tres líneas de negocio. Responsable de la estrategia de expansión hacia mercados de Ecuador y Perú.</div>
+          <div class="exp-logros">
+            <div class="logro">Crecimiento del 34% en ingresos en dos años consecutivos</div>
+            <div class="logro">Apertura de 2 nuevas oficinas regionales</div>
+            <div class="logro">Implementación de CRM que redujo ciclo de venta un 18%</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div class="exp-cargo">Gerente de Cuentas Clave</div>
+            <div class="exp-periodo">2018 — 2022</div>
+          </div>
+          <div class="exp-empresa">Banco Meridian · Bogotá</div>
+          <div class="exp-desc">Gestión de cartera de clientes corporativos con activos superiores a USD 1M. Diseño de soluciones financieras a medida para empresas del sector manufacturero.</div>
+          <div class="exp-logros">
+            <div class="logro">Retención del 96% de cartera asignada</div>
+            <div class="logro">Mejor ejecutivo del año 2020 y 2021</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div class="exp-cargo">Asesor Comercial Senior</div>
+            <div class="exp-periodo">2014 — 2018</div>
+          </div>
+          <div class="exp-empresa">Seguros Continente · Medellín</div>
+          <div class="exp-desc">Venta consultiva de productos de seguros corporativos. Manejo de licitaciones con entidades públicas y privadas.</div>
+          <div class="exp-logros">
+            <div class="logro">Superación de cuota en 5 trimestres consecutivos</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- COLUMNA DERECHA -->
+    <div class="col-right">
+
+      <!-- HABILIDADES -->
+      <div class="section">
+        <div class="section-label">Competencias</div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Estrategia</div>
+          <span class="skill-tag">Planeación comercial</span>
+          <span class="skill-tag">Negociación B2B</span>
+          <span class="skill-tag">Expansión de mercado</span>
+          <span class="skill-tag">P&L</span>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Liderazgo</div>
+          <span class="skill-tag">Gestión de equipos</span>
+          <span class="skill-tag">Mentoría</span>
+          <span class="skill-tag">OKRs</span>
+          <span class="skill-tag">Cultura organizacional</span>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Herramientas</div>
+          <span class="skill-tag">Salesforce</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">SAP</span>
+          <span class="skill-tag">Excel avanzado</span>
+        </div>
+      </div>
+
+      <!-- EDUCACIÓN -->
+      <div class="section">
+        <div class="section-label">Formación</div>
+
+        <div class="edu-item">
+          <div class="edu-titulo">MBA — Dirección de Empresas</div>
+          <div class="edu-inst">Universidad de los Andes</div>
+          <div class="edu-year">2016 — 2018</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-titulo">Administración de Empresas</div>
+          <div class="edu-inst">Universidad Javeriana · Bogotá</div>
+          <div class="edu-year">2008 — 2013</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-titulo">Liderazgo Ejecutivo</div>
+          <div class="edu-inst">Harvard Online · Certificado</div>
+          <div class="edu-year">2021</div>
+        </div>
+      </div>
+
+      <!-- IDIOMAS -->
+      <div class="section">
+        <div class="section-label">Idiomas</div>
+        <div class="lang-row">
+          <span class="lang-name">Español</span>
+          <span class="lang-nivel">Nativo</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Inglés</span>
+          <span class="lang-nivel">C1 — Avanzado</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Portugués</span>
+          <span class="lang-nivel">B1 — Intermedio</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gold-bar"></div>
+
+  <footer>
+    <span class="footer-copy">Andrés Caballero · 2026</span>
+    <span class="footer-gold">Disponible para nuevos proyectos</span>
+  </footer>
+
+</body>
+</html>
