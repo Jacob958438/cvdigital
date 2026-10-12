@@ -31,7 +31,7 @@ HTML5 + CSS3 + JavaScript vanilla. Sin frameworks, sin build, sin backend.
 ## Contacto
 
 - WhatsApp: https://wa.me/573114008507
-- Instagram: https://instagram.com/jacobmarinc
+- Instagram: https://instagram.com/cv_digital0
 
 ## Notas
 
